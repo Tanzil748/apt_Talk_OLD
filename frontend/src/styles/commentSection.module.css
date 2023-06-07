@@ -1,0 +1,32 @@
+.commentInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin: 20px 0px;
+}
+
+.commentInput > input {
+  width: 100%;
+  height: 2.4rem;
+  padding-left: 10px;
+}
+
+.commentInput > input:focus {
+  outline: none;
+}
+
+.commentInput > button {
+  border: none;
+  padding: 9px 20px;
+  border-radius: 5px;
+  background-color: lightslategray;
+  color: white;
+  cursor: pointer;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

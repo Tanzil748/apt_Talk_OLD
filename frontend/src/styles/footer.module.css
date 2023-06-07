@@ -1,0 +1,18 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  padding: 10px 0px;
+  border-top: 1px solid lightgray;
+}
+
+.top {
+  display: flex;
+  gap: 8px;
+}
+
+.bottom {
+  font-size: 0.8em;
+}

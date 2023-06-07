@@ -1,0 +1,42 @@
+.postCard {
+  background-color: white;
+  padding: 20px;
+  width: 95%;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.followButton {
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: lightcoral;
+  color: white;
+}
+
+.content {
+  margin-top: 10px;
+}
+
+.pic {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+}
+
+.feedback {
+  display: flex;
+  gap: 10px;
+  padding-top: 5px;
+}
+
+.reactButton {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}

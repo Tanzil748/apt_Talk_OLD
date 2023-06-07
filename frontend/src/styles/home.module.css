@@ -1,0 +1,39 @@
+.layout {
+  display: flex;
+  background-color: lightgray;
+}
+
+.leftMenu {
+  flex: 2;
+  max-width: 768px;
+}
+
+.rightSide {
+  flex: 5;
+}
+
+.buttonWrapper {
+  width: 95%;
+  display: flex;
+  justify-content: end;
+  margin: 16px 10px;
+}
+
+.addButton {
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background-color: lightcoral;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .leftMenu {
+    display: none;
+  }
+}

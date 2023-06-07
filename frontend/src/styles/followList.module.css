@@ -1,0 +1,22 @@
+.layout {
+  padding: 20px;
+  background-color: white;
+  margin: 10px;
+  border-radius: 5px;
+  position: sticky;
+  top: 66px;
+  height: calc(100vh - 66px);
+  overflow: scroll;
+}
+
+.listHeader {
+  color: gray;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+}
+
+.listHeaderBorder {
+  border: 0.5px solid lightgray;
+  margin: 5px;
+}

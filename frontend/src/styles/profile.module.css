@@ -1,0 +1,30 @@
+.layout {
+  min-height: 87vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: lightgray;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin: 10px 0px;
+}
+
+.followButton {
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: lightcoral;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
