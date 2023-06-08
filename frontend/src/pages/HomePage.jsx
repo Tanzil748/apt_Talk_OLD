@@ -3,8 +3,11 @@ import css from "../styles/home.module.css";
 import FollowList from "../components/FollowList";
 import { BiMessageSquareAdd } from "react-icons/bi";
 import UserPost from "../components/UserPost";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   const fakeData = [
     {
       id: 1,
@@ -39,7 +42,10 @@ const HomePage = () => {
       </div>
       <div className={css.rightSide}>
         <div className={css.buttonWrapper}>
-          <button className={css.addButton}>
+          <button
+            className={css.addButton}
+            onClick={() => navigate("/addPost/:id")}
+          >
             <span>Add Post</span>
             <BiMessageSquareAdd size={20} />
           </button>

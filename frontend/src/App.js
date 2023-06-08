@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
 import { useContext } from "react";
 import AuthContext from "./context/AuthContext";
+import AddPostForm from "./pages/AddPostForm";
 
 const App = () => {
   const { loggedUser } = useContext(AuthContext);
@@ -29,6 +30,10 @@ const App = () => {
         {
           path: "/profile/:id",
           element: <ProfilePage />,
+        },
+        {
+          path: "/addPost/:id",
+          element: <AddPostForm />,
         },
       ],
     },

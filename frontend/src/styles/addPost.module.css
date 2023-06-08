@@ -1,0 +1,64 @@
+.backdrop {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(185, 186, 189, 0.52),
+      rgba(25, 3, 8, 0.73)
+    ),
+    url("https://images.unsplash.com/photo-1499916078039-922301b0eb9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80");
+  height: 87vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+}
+
+.container {
+  background-color: white;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  height: 600px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.titleInput {
+  padding: 5px;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.contentInput {
+  padding: 5px;
+  height: 300px;
+  margin-top: 5px;
+  resize: none;
+}
+
+.fileInput {
+  width: 100%;
+  border: dotted lightgray 2px;
+  padding: 2px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  border: none;
+  padding: 5px;
+  width: 30%;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  background-color: lightcoral;
+  color: white;
+}
