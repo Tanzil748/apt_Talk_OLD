@@ -13,7 +13,7 @@ CREATE TABLE users(
 CREATE TABLE posts(
     id BIGSERIAL NOT NULL PRIMARY KEY,
     postContent TEXT NOT NULL,
-    picture VARCHAR(100),
+    picture VARCHAR(300),
     createdAt DATE,
     postAuthorId BIGINT REFERENCES users(id) NOT NULL --foreign key
 );
@@ -40,3 +40,8 @@ CREATE TABLE reactions(
     reactionPostId BIGINT REFERENCES posts(id) NOT NULL, --foreign key
     reactionUserId BIGINT REFERENCES users(id) NOT NULL --foreign key
 );
+
+
+
+-- INSERT INTO posts (postcontent, picture, id, postauthorid) VALUES ('Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi tempore ducimus ullam rerum? Optio soluta ullam dolores nihil placeat aspernatur velit totam. Sapiente voluptatem alias ipsam illum amet dolore vitae.', 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBhcnRtZW50fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1400&q=60', 1, 59);
+

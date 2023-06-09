@@ -15,7 +15,7 @@ const UserPost = ({ post }) => {
         <button className={css.followButton}>Follow</button>
       </div>
       <div className={css.content}>
-        <p>{post.text}</p>
+        <p>{post.postcontent}</p>
         <img src={post.picture} alt="" className={css.pic} />
       </div>
       <div className={css.feedback}>

@@ -7,6 +7,10 @@ import RootLayout from "./layouts/RootLayout";
 import { useContext } from "react";
 import AuthContext from "./context/AuthContext";
 import AddPostForm from "./pages/AddPostForm";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+// Create a client
+const queryClient = new QueryClient();
 
 const App = () => {
   const { loggedUser } = useContext(AuthContext);
@@ -38,7 +42,11 @@ const App = () => {
       ],
     },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 };
 
 export default App;
