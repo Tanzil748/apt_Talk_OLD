@@ -9,8 +9,8 @@ const UserPost = ({ post }) => {
   return (
     <div key={post.id} className={css.postCard}>
       <div className={css.topRow}>
-        <div style={{ display: "flex", gap: "5px" }}>
-          <p>{post.username}</p>|<span>Time</span>
+        <div style={{ color: "gray", fontSize: "0.8rem" }}>
+          <p>Posted by @{post.username}</p>
         </div>
         <button className={css.followButton}>Follow</button>
       </div>

@@ -15,7 +15,7 @@
 .buttonWrapper {
   width: 95%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin: 16px 10px;
 }
 
