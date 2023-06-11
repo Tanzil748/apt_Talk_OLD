@@ -1,13 +1,10 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import css from "../styles/addPost.module.css";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { apiRequests } from "../axios.js";
-import AuthContext from "../context/AuthContext";
 
 const AddPostForm = () => {
-  const { loggedUser } = useContext(AuthContext);
-
   const [title, setTitle] = useState("");
   const [postContent, setPostContent] = useState("");
   const [file, setFile] = useState(null);
@@ -28,12 +25,9 @@ const AddPostForm = () => {
     }
   );
 
-  const postAuthorId =
-    loggedUser && loggedUser.others ? loggedUser.others.id : null;
-
   const submitHandler = async (e) => {
     e.preventDefault();
-    mutation.mutate({ title, postContent, postAuthorId });
+    mutation.mutate({ title, postContent });
     navigate("/");
   };
 
