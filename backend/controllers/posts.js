@@ -4,7 +4,7 @@ import { pool } from "../db/connectDb.js";
 export const getAllPosts = async (req, res) => {
   try {
     const posts = await pool.query(
-      "SELECT p.*, u.username FROM posts AS p INNER JOIN users AS u ON p.postauthorid = u.id ORDER BY p.id DESC"
+      "SELECT p.*, u.username FROM posts AS p INNER JOIN users AS u ON u.id = p.postauthorid ORDER BY p.id DESC"
     ); //latest posts up top
     return res.status(200).json(posts);
   } catch (error) {
@@ -15,11 +15,11 @@ export const getAllPosts = async (req, res) => {
 
 // add post
 export const addPost = async (req, res) => {
-  const { postContent, picture, postAuthorId } = req.body;
+  const { postContent, picture, postAuthorId, title } = req.body;
   try {
     await pool.query(
-      "INSERT INTO posts (postcontent, picture, postauthorid) VALUES ($1, $2, $3)",
-      [postContent, picture, postAuthorId]
+      "INSERT INTO posts (postcontent, picture, postauthorid, title) VALUES ($1, $2, $3, $4)",
+      [postContent, picture, postAuthorId, title]
     );
     return res.status(200).json("Post added!");
   } catch (error) {

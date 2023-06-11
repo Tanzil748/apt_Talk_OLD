@@ -14,6 +14,7 @@ const UserPost = ({ post }) => {
         </div>
         <button className={css.followButton}>Follow</button>
       </div>
+      <h3>{post.title}</h3>
       <div className={css.content}>
         <p>{post.postcontent}</p>
         <img src={post.picture} alt="" className={css.pic} />

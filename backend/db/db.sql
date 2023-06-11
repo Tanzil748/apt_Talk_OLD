@@ -6,7 +6,7 @@ CREATE TABLE users(
     userName VARCHAR(9) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
     userPassword VARCHAR(200) NOT NULL,
-    createdAt DATE
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Post table
@@ -14,7 +14,7 @@ CREATE TABLE posts(
     id BIGSERIAL NOT NULL PRIMARY KEY,
     postContent TEXT NOT NULL,
     picture VARCHAR(300),
-    createdAt DATE,
+    title VARCHAR(100) NOT NULL,
     postAuthorId BIGINT REFERENCES users(id) NOT NULL --foreign key
 );
 
