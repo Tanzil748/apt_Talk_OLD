@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 const UserDropdown = () => {
-  const { loggedIn, logOut } = useContext(AuthContext);
+  const { logout, isLoggedIn } = useContext(AuthContext);
   return (
     <div className={css.layout}>
       <ul className={css.menu}>
-        {loggedIn ? (
-          <Link to="/login" className={css.link} onClick={() => logOut()}>
+        {isLoggedIn ? (
+          <Link to="/login" className={css.link} onClick={() => logout()}>
             Log Out
           </Link>
         ) : (
