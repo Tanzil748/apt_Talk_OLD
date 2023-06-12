@@ -9,6 +9,17 @@ const AddPostForm = () => {
   const [postContent, setPostContent] = useState("");
   const [file, setFile] = useState(null);
 
+  const upload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await apiRequests.post("/upload", formData);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const navigate = useNavigate();
 
   const queryClient = useQueryClient();
@@ -27,7 +38,11 @@ const AddPostForm = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    mutation.mutate({ title, postContent });
+    let picUrl = "";
+    if (file) {
+      picUrl = await upload();
+    }
+    mutation.mutate({ title, postContent, picture: picUrl });
     navigate("/");
   };
 
@@ -52,7 +67,11 @@ const AddPostForm = () => {
             onChange={(e) => setPostContent(e.target.value)}
           ></textarea>
         </div>
-        <input type="file" className={css.fileInput} />
+        <input
+          type="file"
+          className={css.fileInput}
+          onChange={(e) => setFile(e.target.files[0])}
+        />
         <div className={css.buttonContainer}>
           <button className={css.button}>Post Form</button>
         </div>

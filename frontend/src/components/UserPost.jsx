@@ -17,7 +17,11 @@ const UserPost = ({ post }) => {
       <h3>{post.title}</h3>
       <div className={css.content}>
         <p>{post.postcontent}</p>
-        <img src={post.picture} alt="" className={css.pic} />
+        {post?.picture ? (
+          <div className={css.picContainer}>
+            <img src={"./upload/" + post.picture} alt="" className={css.pic} />
+          </div>
+        ) : null}
       </div>
       <div className={css.feedback}>
         <div className={css.reactButton}>
