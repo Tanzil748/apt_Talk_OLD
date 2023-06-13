@@ -40,7 +40,7 @@ const UserPost = ({ post }) => {
           <span>Comments</span>
         </div>
       </div>
-      {openComment && <CommentSection />}
+      {openComment && <CommentSection postId={post.id} />}
     </div>
   );
 };

@@ -1,50 +1,76 @@
-import { useContext } from "react";
+import { useState } from "react";
 import css from "../styles/commentSection.module.css";
-import AuthContext from "../context/AuthContext";
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
+import { apiRequests } from "../axios.js";
+import { FaEllipsisH } from "react-icons/fa";
 
-const CommentSection = () => {
-  const { loggedUser } = useContext(AuthContext);
-  const fakeComments = [
-    {
-      id: 1, //comment id
-      username: "tanzil333",
-      userid: 1,
-      message:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cumque ex ratione doloribus omnis blanditiis totam accusantium consectetur iure porro!",
+const CommentSection = ({ postId }) => {
+  const [commentContent, setCommentContent] = useState("");
+
+  const { isLoading, data } = useQuery(["comments"], () =>
+    apiRequests.get("/comment?postId=" + postId).then((res) => res.data)
+  );
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(
+    (newComment) => {
+      return apiRequests.post("/comment/addComment", newComment);
     },
     {
-      id: 2, //comment id
-      username: "bob1537",
-      userid: 55,
-      message:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cumque ex ratione doloribus omnis blanditiis totam accusantium consectetur iure porro!",
-    },
-    {
-      id: 3, //comment id
-      username: "fake111",
-      userid: 3,
-      message:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cumque ex ratione doloribus omnis blanditiis totam accusantium consectetur iure porro!",
-    },
-  ];
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries({ queryKey: ["comments"] });
+      },
+    }
+  );
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    if (commentContent.trim() === "") {
+      // Check if commentContent is empty or contains only whitespace
+      return;
+    }
+    mutation.mutate({ commentContent, postId });
+    setCommentContent("");
+  };
+
   return (
     <div>
-      <div className={css.commentInput}>
-        <input type="text" placeholder="Enter a comment" />
-        <button>Post</button>
-      </div>
-      {fakeComments.map((comment) => (
-        <div key={comment.id}>
-          <div className={css.topRow}>
-            <div style={{ fontWeight: "600" }}>@{comment.username}</div>
-            <div style={{ color: "lightgray" }}>|</div>
-            <div style={{ color: "gray", fontSize: "12px" }}>Time</div>
+      <form className={css.commentInput} onSubmit={submitHandler}>
+        <input
+          type="text"
+          placeholder="Enter a comment"
+          value={commentContent}
+          onChange={(e) => setCommentContent(e.target.value)}
+        />
+        <button type="submit">Post</button>
+      </form>
+      {isLoading ? (
+        "Comments Loading..."
+      ) : Array.isArray(data) && data.length > 0 ? (
+        data.map((comment) => (
+          <div key={comment.id} className={css.commentContainer}>
+            <div>
+              <div className={css.topRow}>
+                <div style={{ fontWeight: "500" }}>@{comment.username}</div>
+              </div>
+              <div className={css.content}>
+                <div style={{ fontSize: "0.8rem" }}>
+                  {comment.commentcontent}
+                </div>
+              </div>
+            </div>
+            <div className={css.right}>
+              <FaEllipsisH />
+            </div>
           </div>
-          <div className={css.content}>
-            <div style={{ fontSize: "0.9rem" }}>{comment.message}</div>
-          </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <span style={{ display: "flex", justifyContent: "center" }}>
+          No comments...
+        </span>
+      )}
     </div>
   );
 };

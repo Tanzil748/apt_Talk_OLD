@@ -25,6 +25,17 @@
   cursor: pointer;
 }
 
+.commentContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.right {
+  cursor: pointer;
+}
+
 .topRow {
   display: flex;
   align-items: center;

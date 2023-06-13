@@ -17,20 +17,20 @@ export const getAllPosts = async (req, res) => {
 };
 
 // add post
-export const addPost = (req, res) => {
+export const addPost = async (req, res) => {
   const token = req.cookies.accessToken;
   if (!token)
     return res.status(401).json("Authentication failed. No linked user found");
 
   // grab the user id from the id created in authentication.js
-  jwt.verify(token, process.env.JWTkey, (error, user) => {
+  jwt.verify(token, process.env.JWTkey, async (error, user) => {
     if (error)
       return res
         .status(403)
         .json("Authorization failed. Cannot do that action!");
 
     try {
-      pool.query(
+      await pool.query(
         "INSERT INTO posts (postcontent, picture, postauthorid, title) VALUES ($1, $2, $3, $4)",
         [req.body.postContent, req.body.picture, user.id, req.body.title]
       );

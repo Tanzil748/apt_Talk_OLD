@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 import multer from "multer";
 import { authRouter } from "./routes/authentication.js";
 import { postRouter } from "./routes/posts.js";
+import { commentRouter } from "./routes/comments.js";
 
 // middleware
 app.use((req, res, next) => {
@@ -42,6 +43,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
 // routes
 app.use("/auth", authRouter);
 app.use("/post", postRouter);
+app.use("/comment", commentRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);

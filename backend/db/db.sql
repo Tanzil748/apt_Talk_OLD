@@ -22,7 +22,6 @@ CREATE TABLE posts(
 CREATE TABLE comments(
     id BIGSERIAL NOT NULL PRIMARY KEY,
     commentContent VARCHAR(300) NOT NULL,
-    createdAt DATE,
     commentUserId BIGINT REFERENCES users(id) NOT NULL, --foreign key
     commentPostId BIGINT REFERENCES posts(id) NOT NULL --foreign key
 );
