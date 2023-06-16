@@ -21,14 +21,6 @@ const Header = () => {
         </Link>
       </div>
       <div className={css.right}>
-        {loggedUser !== null ? (
-          <Link
-            to="/profile/:id"
-            style={{ color: "black", textDecoration: "none" }}
-          >
-            Profile
-          </Link>
-        ) : null}
         <div
           className={css.userProfile}
           onClick={() => setUserDrop((prev) => !prev)}
