@@ -4,8 +4,6 @@ import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
-import { useContext } from "react";
-import AuthContext from "./context/AuthContext";
 import AddPostForm from "./pages/AddPostForm";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -13,7 +11,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const { loggedUser } = useContext(AuthContext);
   const router = createBrowserRouter([
     {
       path: "/",

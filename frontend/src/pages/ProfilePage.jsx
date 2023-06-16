@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import css from "../styles/profile.module.css";
 import AuthContext from "../context/AuthContext";
-import { SlUserFollow, SlUserFollowing, SlUserUnfollow } from "react-icons/sl";
 import UserPost from "../components/UserPost";
 
 const ProfilePage = () => {
@@ -19,11 +18,7 @@ const ProfilePage = () => {
   return (
     <div className={css.layout}>
       <div className={css.header}>
-        <h2 className={css.title}>{loggedUser.username} Activity</h2>
-        <button className={css.followButton}>
-          <SlUserFollow size={20} />
-          <span>Follow User</span>
-        </button>
+        <h2 className={css.title}>{loggedUser.others.username} Activity</h2>
       </div>
 
       {userPosts.map((post) => (

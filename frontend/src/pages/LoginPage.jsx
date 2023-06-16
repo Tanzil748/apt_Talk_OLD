@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 const LoginPage = () => {
-  const { login, loggedUser } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const [userInputs, setUserInputs] = useState({
     email: "",

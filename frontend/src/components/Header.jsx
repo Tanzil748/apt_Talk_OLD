@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import css from "../styles/header.module.css";
 import { Link } from "react-router-dom";
-import { BiUserCircle } from "react-icons/bi";
-import { MdMapsHomeWork } from "react-icons/md";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import UserDropdown from "./UserDropdown";
 import AuthContext from "../context/AuthContext";
 
@@ -14,24 +14,27 @@ const Header = () => {
     <div className={css.layout}>
       <div>
         <Link to="/" className={css.left}>
-          <MdMapsHomeWork size={30} />
+          <ApartmentRoundedIcon style={{ fontSize: "1.8rem" }} />
           <div>
             Apt<span style={{ color: "red" }}>Talk</span>
           </div>
         </Link>
       </div>
       <div className={css.right}>
-        <Link
-          to="/profile/:id"
-          style={{ color: "black", textDecoration: "none" }}
-        >
-          Profile
-        </Link>
+        {loggedUser !== null ? (
+          <Link
+            to="/profile/:id"
+            style={{ color: "black", textDecoration: "none" }}
+          >
+            Profile
+          </Link>
+        ) : null}
         <div
           className={css.userProfile}
           onClick={() => setUserDrop((prev) => !prev)}
         >
-          <BiUserCircle size={30} />
+          <AccountCircleRoundedIcon style={{ fontSize: "1.8rem" }} />
+          <span>{loggedUser?.others.username}</span>
           {userDrop && <UserDropdown />}
         </div>
       </div>

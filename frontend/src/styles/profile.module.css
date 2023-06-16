@@ -16,15 +16,3 @@
 .title {
   margin: 10px 0px;
 }
-
-.followButton {
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  background-color: lightcoral;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}

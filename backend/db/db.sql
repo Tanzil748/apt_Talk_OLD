@@ -33,11 +33,11 @@ CREATE TABLE followers(
     followedUserId BIGINT REFERENCES users(id) NOT NULL--foreign key
 );
 
--- Post Reaction Table
-CREATE TABLE reactions(
+-- Bookmark Table
+CREATE TABLE bookmarks(
     id BIGSERIAL NOT NULL PRIMARY KEY,
-    reactionPostId BIGINT REFERENCES posts(id) NOT NULL, --foreign key
-    reactionUserId BIGINT REFERENCES users(id) NOT NULL --foreign key
+    bookmark_post_id BIGINT REFERENCES posts(id) NOT NULL, --foreign key
+    bookmark_user_id BIGINT REFERENCES users(id) NOT NULL --foreign key
 );
 
 -- This is for adding new post

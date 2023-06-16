@@ -30,8 +30,7 @@ export const register = async (req, res) => {
     // now generate jwt token (user-id as payload)
     const jwtToken = jwt.sign(
       { id: registerNewUser.rows[0].id },
-      process.env.JWTkey,
-      { expiresIn: "1h" }
+      process.env.JWTkey
     );
 
     // outputs jwtToken in json object
@@ -66,9 +65,7 @@ export const login = async (req, res) => {
     }
 
     // now generate jwt token
-    const jwtToken = jwt.sign({ id: user.rows[0].id }, process.env.JWTkey, {
-      expiresIn: "1h",
-    });
+    const jwtToken = jwt.sign({ id: user.rows[0].id }, process.env.JWTkey);
 
     // we will extract the userpassword from the json object (make sure userpassword all lowercase, postgres seems to have issues with uppercase)
     const { userpassword, ...others } = user.rows[0];
