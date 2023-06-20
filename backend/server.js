@@ -10,6 +10,7 @@ import { authRouter } from "./routes/authentication.js";
 import { postRouter } from "./routes/posts.js";
 import { commentRouter } from "./routes/comments.js";
 import { bookmarkRouter } from "./routes/bookmark.js";
+import { followRouter } from "./routes/follows.js";
 
 // middleware
 app.use((req, res, next) => {
@@ -46,6 +47,7 @@ app.use("/auth", authRouter);
 app.use("/post", postRouter);
 app.use("/comment", commentRouter);
 app.use("/bookmark", bookmarkRouter);
+app.use("/follow", followRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);

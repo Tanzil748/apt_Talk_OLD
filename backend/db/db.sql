@@ -29,7 +29,7 @@ CREATE TABLE comments(
 -- Follow List Table
 CREATE TABLE followers(
     id BIGSERIAL NOT NULL PRIMARY KEY,
-    followerId BIGINT REFERENCES users(id) NOT NULL, --foreign key (users in follow list)
+    followerId BIGINT REFERENCES users(id) NOT NULL, --foreign key (users in follow list) => only way to follow is if loggedUser manually press follow
     followedUserId BIGINT REFERENCES users(id) NOT NULL--foreign key
 );
 

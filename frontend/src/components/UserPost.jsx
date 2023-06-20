@@ -13,7 +13,7 @@ const UserPost = ({ post }) => {
   const { loggedUser } = useContext(AuthContext);
   const [openComment, setOpenComment] = useState(false);
 
-  const { isLoading, data } = useQuery(["bookmarks", post.id], () =>
+  const { data } = useQuery(["bookmarks", post.id], () =>
     apiRequests.get("/bookmark?postId=" + post.id).then((res) => res.data)
   );
 
@@ -36,6 +36,12 @@ const UserPost = ({ post }) => {
       },
     }
   );
+
+  const followMutation = useMutation();
+
+  // add
+
+  // delete
 
   const bookmarkHandler = () => {
     mutation.mutate(data.includes(loggedUser.others.id));
