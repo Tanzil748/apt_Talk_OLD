@@ -41,8 +41,25 @@
 
 .feedback {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
   padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.bottomLeft {
+  display: flex;
+  gap: 10px;
+}
+
+.bottomRight {
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.optionMenu {
+  display: flex;
+  gap: 5px;
 }
 
 .reactButton {
@@ -50,4 +67,28 @@
   align-items: center;
   cursor: pointer;
   margin-top: 8px;
+}
+
+.optionMenuButton {
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cancelButton {
+  align-self: center;
+}
+
+@media (max-width: 520px) {
+  .optionMenu {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .cancelButton {
+    align-self: flex-end;
+  }
 }

@@ -41,3 +41,29 @@ export const addPost = async (req, res) => {
     }
   });
 };
+
+// delete post
+export const deletePost = async (req, res) => {
+  const token = req.cookies.accessToken;
+  if (!token)
+    return res.status(401).json("Authentication failed. No linked user found");
+
+  jwt.verify(token, process.env.JWTkey, async (error, user) => {
+    if (error)
+      return res
+        .status(403)
+        .json("Authorization failed. Cannot do that action!");
+
+    try {
+      await pool.query(
+        "DELETE FROM posts WHERE id = $1 AND postauthorid = $2",
+        [req.params.id, user.id]
+      );
+      // if()
+      return res.status(200).json("Post deleted!");
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  });
+};

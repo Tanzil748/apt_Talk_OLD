@@ -8,10 +8,13 @@ import { SlUserFollow } from "react-icons/sl";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { apiRequests } from "../axios.js";
 import AuthContext from "../context/AuthContext";
+import { FaEllipsisH } from "react-icons/fa";
+import { MdCancel } from "react-icons/md";
 
 const UserPost = ({ post }) => {
   const { loggedUser } = useContext(AuthContext);
   const [openComment, setOpenComment] = useState(false);
+  const [postAction, setPostAction] = useState(false);
 
   const { data } = useQuery(["bookmarks", post.id], () =>
     apiRequests.get("/bookmark?postId=" + post.id).then((res) => res.data)
@@ -37,14 +40,26 @@ const UserPost = ({ post }) => {
     }
   );
 
-  const followMutation = useMutation();
-
-  // add
-
-  // delete
+  const deleteMutation = useMutation(
+    (postId) => {
+      return apiRequests.delete("/post/" + postId);
+    },
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries({ queryKey: ["posts"] });
+      },
+    }
+  );
 
   const bookmarkHandler = () => {
     mutation.mutate(data.includes(loggedUser.others.id));
+  };
+
+  // const updateHandler = () => {}
+
+  const deleteHandler = () => {
+    deleteMutation.mutate(post.id);
   };
 
   return (
@@ -67,27 +82,57 @@ const UserPost = ({ post }) => {
         ) : null}
       </div>
       <div className={css.feedback}>
-        {data && data.includes(loggedUser.others.id) ? (
-          <div className={css.reactButton}>
-            <BookmarkIcon onClick={bookmarkHandler} />
-            <span>
-              {data && data.length !== undefined ? data.length : null} Bookmark
-            </span>
+        <div className={css.bottomLeft}>
+          {data && data.includes(loggedUser.others.id) ? (
+            <div className={css.reactButton}>
+              <BookmarkIcon onClick={bookmarkHandler} />
+              <span>
+                {data && data.length !== undefined ? data.length : null}{" "}
+                Bookmark
+              </span>
+            </div>
+          ) : (
+            <div className={css.reactButton}>
+              <BookmarkBorderIcon onClick={bookmarkHandler} />
+              <span>
+                {data && data.length !== undefined ? data.length : null}{" "}
+                Bookmark
+              </span>
+            </div>
+          )}
+          <div
+            className={css.reactButton}
+            onClick={() => setOpenComment(!openComment)}
+          >
+            <ChatRoundedIcon style={{ marginRight: "6px" }} />
+            <span>Comments</span>
           </div>
-        ) : (
-          <div className={css.reactButton}>
-            <BookmarkBorderIcon onClick={bookmarkHandler} />
-            <span>
-              {data && data.length !== undefined ? data.length : null} Bookmark
-            </span>
-          </div>
-        )}
-        <div
-          className={css.reactButton}
-          onClick={() => setOpenComment(!openComment)}
-        >
-          <ChatRoundedIcon style={{ marginRight: "6px" }} />
-          <span>Comments</span>
+        </div>
+        <div className={css.bottomRight}>
+          {postAction ? (
+            <div className={css.optionMenu}>
+              <button
+                className={css.optionMenuButton}
+                style={{ backgroundColor: "orange" }}
+              >
+                Update
+              </button>
+              <button
+                className={css.optionMenuButton}
+                style={{ backgroundColor: "red" }}
+                onClick={deleteHandler}
+              >
+                Delete
+              </button>
+              <MdCancel
+                onClick={() => setPostAction(!postAction)}
+                size={20}
+                className={css.cancelButton}
+              />
+            </div>
+          ) : (
+            <FaEllipsisH onClick={() => setPostAction(!postAction)} />
+          )}
         </div>
       </div>
       {openComment && <CommentSection postId={post.id} />}
