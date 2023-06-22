@@ -56,8 +56,6 @@ const UserPost = ({ post }) => {
     mutation.mutate(data.includes(loggedUser.others.id));
   };
 
-  // const updateHandler = () => {}
-
   const deleteHandler = () => {
     deleteMutation.mutate(post.id);
   };
@@ -109,14 +107,14 @@ const UserPost = ({ post }) => {
           </div>
         </div>
         <div className={css.bottomRight}>
-          {postAction ? (
+          {postAction && post.postauthorid === loggedUser.others.id ? (
             <div className={css.optionMenu}>
-              <button
+              {/* <button
                 className={css.optionMenuButton}
                 style={{ backgroundColor: "orange" }}
               >
                 Update
-              </button>
+              </button> */}
               <button
                 className={css.optionMenuButton}
                 style={{ backgroundColor: "red" }}

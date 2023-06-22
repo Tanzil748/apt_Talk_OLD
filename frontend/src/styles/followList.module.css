@@ -20,3 +20,35 @@
   border: 0.5px solid lightgray;
   margin: 5px;
 }
+
+/* Delete all css below when follower feature added in future version */
+.personItem {
+  border-bottom: 0.1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.followButton {
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: green;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+@media screen and (max-width: 1110px) {
+  .followButton {
+    margin-left: 10px;
+  }
+}

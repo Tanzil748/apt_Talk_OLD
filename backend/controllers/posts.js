@@ -42,6 +42,37 @@ export const addPost = async (req, res) => {
   });
 };
 
+// Update post (future version of app will have this)
+// export const updatePost = async (req, res) => {
+//   const token = req.cookies.accessToken;
+//   if (!token)
+//     return res.status(401).json("Authentication failed. No linked user found");
+
+//   jwt.verify(token, process.env.JWTkey, async (error, user) => {
+//     if (error)
+//       return res
+//         .status(403)
+//         .json("Authorization failed. Cannot do that action!");
+
+//     try {
+//       await pool.query(
+//         "UPDATE posts SET postcontent = $1, picture = $2, title = $3 WHERE id = $4 AND postauthorid = $5",
+//         [
+//           req.body.postContent,
+//           req.body.picture,
+//           req.body.title,
+//           req.params.id,
+//           user.id,
+//         ]
+//       );
+//       return res.status(200).json("Post updated!");
+//     } catch (error) {
+//       console.log(error);
+//       res.status(500).json(error);
+//     }
+//   });
+// };
+
 // delete post
 export const deletePost = async (req, res) => {
   const token = req.cookies.accessToken;
