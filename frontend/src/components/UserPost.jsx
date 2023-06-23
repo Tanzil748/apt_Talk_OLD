@@ -81,7 +81,7 @@ const UserPost = ({ post }) => {
       </div>
       <div className={css.feedback}>
         <div className={css.bottomLeft}>
-          {data && data.includes(loggedUser.others.id) ? (
+          {data && data.includes(loggedUser?.others.id) ? (
             <div className={css.reactButton}>
               <BookmarkIcon onClick={bookmarkHandler} />
               <span>

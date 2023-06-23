@@ -15,23 +15,23 @@ const HomePage = () => {
 
   // console.log(data?.rows); //testing
 
-  const {
-    isLoading: followsLoading,
-    data: followsData,
-    error: followsError,
-  } = useQuery(["follow"], () =>
-    apiRequests.get("/follow").then((res) => res.data)
-  );
+  // const {
+  //   isLoading: followsLoading,
+  //   data: followsData,
+  //   error: followsError,
+  // } = useQuery(["follow"], () =>
+  //   apiRequests.get("/follow").then((res) => res.data)
+  // );
 
-  if (isLoading || followsLoading) return "Loading...";
-  if (error || followsError)
-    return "An error has occurred: " + (error || followsError).message;
+  if (isLoading) return "Loading...";
+  if (error) return "An error has occurred: " + error.message;
 
   // console.log(followsData); // testing followsData output
   return (
     <div className={css.layout}>
       <div className={css.leftMenu}>
-        <FollowList followsData={followsData} />
+        {/* <FollowList followsData={followsData} /> */}
+        <FollowList />
       </div>
       <div className={css.rightSide}>
         <div className={css.buttonWrapper}>
