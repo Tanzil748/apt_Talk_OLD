@@ -65,8 +65,6 @@ Then, to deploy this project run the following on client & server terminal:
 | bookmark_post_id | Big Int    | foreign key attached to posts "id" |
 | bookmark_user_id | Big Int    | foreign key attached to users "id" |
 
-## Project Structure
-
 ## Future Features
 
 In future versions, I plan on implementing a variety of features:
