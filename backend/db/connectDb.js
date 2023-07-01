@@ -4,9 +4,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const pool = new Pool({
-  user: "postgres",
-  password: process.env.DBPASS,
-  host: "localhost",
-  port: "5433",
-  database: "aptTalk",
+  database: process.env.DATABASE,
+  host: process.env.DB_HOST,
+  password: process.env.DB_PASS,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
 });
