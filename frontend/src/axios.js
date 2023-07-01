@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const apiRequests = axios.create({
-  baseURL: "http://localhost:4500",
+  baseURL: `${process.env.REACT_APP_BACKEND_URL}`,
   withCredentials: true,
 });
