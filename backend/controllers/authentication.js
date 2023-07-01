@@ -73,6 +73,8 @@ export const login = async (req, res) => {
     return res
       .cookie("accessToken", jwtToken, {
         httpOnly: true,
+        secure: true,
+        sameSite: "none",
       })
       .status(200)
       .json({ others, accessToken: jwtToken });

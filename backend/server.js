@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 });
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://apttalk-demo.netlify.app",
   })
 );
 app.use(express.json());

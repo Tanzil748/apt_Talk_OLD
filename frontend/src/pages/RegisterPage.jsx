@@ -17,7 +17,10 @@ const RegisterPage = () => {
   const registerHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:4500/auth/register", userInputs);
+      await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/auth/register`,
+        userInputs
+      );
       navigate("/login");
     } catch (error) {
       setErrors(error.response.data);
