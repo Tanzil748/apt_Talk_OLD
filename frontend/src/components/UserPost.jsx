@@ -75,7 +75,7 @@ const UserPost = ({ post }) => {
         <p>{post.postcontent}</p>
         {post?.picture ? (
           <div className={css.picContainer}>
-            <img src={"./upload/" + post.picture} alt="" className={css.pic} />
+            <img src={post.picture} alt="" className={css.pic} />
           </div>
         ) : null}
       </div>
