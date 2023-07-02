@@ -9,17 +9,6 @@ const AddPostForm = () => {
   const [postContent, setPostContent] = useState("");
   const [file, setFile] = useState(null);
 
-  const upload = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      const res = await apiRequests.post("/upload", formData);
-      return res.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const navigate = useNavigate();
 
   const queryClient = useQueryClient();
@@ -36,13 +25,26 @@ const AddPostForm = () => {
     }
   );
 
+  // upload image function
+  const upload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await apiRequests.post("/upload", formData);
+      return res.data.imageUrl;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // called upload function here on form submission
   const submitHandler = async (e) => {
     e.preventDefault();
-    let picUrl = "";
+    let imageUrl = "";
     if (file) {
-      picUrl = await upload();
+      imageUrl = await upload();
     }
-    mutation.mutate({ title, postContent, picture: picUrl });
+    mutation.mutate({ title, postContent, picture: imageUrl });
     navigate("/");
   };
 
